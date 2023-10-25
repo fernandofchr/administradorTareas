@@ -20,5 +20,4 @@ type Usuarios @model @auth(rules: [{allow: public}, {allow: owner}]) {
   apellidoM: String
   apellidoP: String
   role: String
-}
- 
+} 

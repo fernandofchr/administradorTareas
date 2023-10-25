@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import {Link} from 'react-router-dom';
 import './App.css';
+import { Button } from '@mui/material';
 
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          ¿QUIEN QUIERE INGRESAR?
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Button>
+          <Link to="/admin-login">Administrador</Link>
+        </Button>
+        <Button>   
+          <Link to="/supervisor-login">Supervisor</Link>       
+        </Button>
+        <Button>
+          <Link to="/usuario-login">Administrador</Link>
+        </Button>
       </header>
     </div>
   );
