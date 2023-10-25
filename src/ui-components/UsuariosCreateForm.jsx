@@ -26,25 +26,29 @@ export default function UsuariosCreateForm(props) {
     nombre: "",
     apellidoM: "",
     apellidoP: "",
-    role: "",
+    correo: "",
+    rol: "",
   };
   const [nombre, setNombre] = React.useState(initialValues.nombre);
   const [apellidoM, setApellidoM] = React.useState(initialValues.apellidoM);
   const [apellidoP, setApellidoP] = React.useState(initialValues.apellidoP);
-  const [role, setRole] = React.useState(initialValues.role);
+  const [correo, setCorreo] = React.useState(initialValues.correo);
+  const [rol, setRol] = React.useState(initialValues.rol);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setNombre(initialValues.nombre);
     setApellidoM(initialValues.apellidoM);
     setApellidoP(initialValues.apellidoP);
-    setRole(initialValues.role);
+    setCorreo(initialValues.correo);
+    setRol(initialValues.rol);
     setErrors({});
   };
   const validations = {
     nombre: [],
     apellidoM: [],
     apellidoP: [],
-    role: [],
+    correo: [],
+    rol: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -75,7 +79,8 @@ export default function UsuariosCreateForm(props) {
           nombre,
           apellidoM,
           apellidoP,
-          role,
+          correo,
+          rol,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -133,7 +138,8 @@ export default function UsuariosCreateForm(props) {
               nombre: value,
               apellidoM,
               apellidoP,
-              role,
+              correo,
+              rol,
             };
             const result = onChange(modelFields);
             value = result?.nombre ?? value;
@@ -160,7 +166,8 @@ export default function UsuariosCreateForm(props) {
               nombre,
               apellidoM: value,
               apellidoP,
-              role,
+              correo,
+              rol,
             };
             const result = onChange(modelFields);
             value = result?.apellidoM ?? value;
@@ -187,7 +194,8 @@ export default function UsuariosCreateForm(props) {
               nombre,
               apellidoM,
               apellidoP: value,
-              role,
+              correo,
+              rol,
             };
             const result = onChange(modelFields);
             value = result?.apellidoP ?? value;
@@ -203,10 +211,10 @@ export default function UsuariosCreateForm(props) {
         {...getOverrideProps(overrides, "apellidoP")}
       ></TextField>
       <TextField
-        label="Role"
+        label="Correo"
         isRequired={false}
         isReadOnly={false}
-        value={role}
+        value={correo}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
@@ -214,20 +222,49 @@ export default function UsuariosCreateForm(props) {
               nombre,
               apellidoM,
               apellidoP,
-              role: value,
+              correo: value,
+              rol,
             };
             const result = onChange(modelFields);
-            value = result?.role ?? value;
+            value = result?.correo ?? value;
           }
-          if (errors.role?.hasError) {
-            runValidationTasks("role", value);
+          if (errors.correo?.hasError) {
+            runValidationTasks("correo", value);
           }
-          setRole(value);
+          setCorreo(value);
         }}
-        onBlur={() => runValidationTasks("role", role)}
-        errorMessage={errors.role?.errorMessage}
-        hasError={errors.role?.hasError}
-        {...getOverrideProps(overrides, "role")}
+        onBlur={() => runValidationTasks("correo", correo)}
+        errorMessage={errors.correo?.errorMessage}
+        hasError={errors.correo?.hasError}
+        {...getOverrideProps(overrides, "correo")}
+      ></TextField>
+      <TextField
+        label="Rol"
+        isRequired={false}
+        isReadOnly={false}
+        value={rol}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              nombre,
+              apellidoM,
+              apellidoP,
+              correo,
+              rol: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.rol ?? value;
+          }
+          if (errors.rol?.hasError) {
+            runValidationTasks("rol", value);
+          }
+          setRol(value);
+        }}
+        onBlur={() => runValidationTasks("rol", rol)}
+        errorMessage={errors.rol?.errorMessage}
+        hasError={errors.rol?.hasError}
+        {...getOverrideProps(overrides, "rol")}
       ></TextField>
       <Flex
         justifyContent="space-between"

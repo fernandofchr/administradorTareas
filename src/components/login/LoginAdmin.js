@@ -4,13 +4,13 @@ import { Auth } from "aws-amplify";
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { DataStore } from "@aws-amplify/datastore";
-
 import { Usuarios } from "../../models";
 
 function LoginAdmin() {
   const [session, setSession] = useState(false);
   const [nombreGrupo, setNombreGrupo] = useState("administrador");
   const [userData, setUserData] = useState({});
+  
 
   useEffect(() => {
     async function getData() {
@@ -18,7 +18,6 @@ function LoginAdmin() {
         .then(async (data) => {
           data.length === 0 ? setSession(false) : setSession(true);
           await addToGroup(data.username);
-
           const sub = DataStore.observeQuery(
             Usuarios,(c) => c.correo.eq(data.attributes.email),{ limit: 1 }
           ).subscribe(({ items }) => {
@@ -33,9 +32,8 @@ function LoginAdmin() {
     getData();
   }, []);
 
-
-  //Agregar los usuarios a sus grupos
-  async function addToGroup(username) {
+   //Agregar los usuarios a sus grupos
+   async function addToGroup(username) {
     await Auth.currentSession().then((data) => {
       var token = data.idToken.jwtToken;
       const requestOptions = {
@@ -45,7 +43,7 @@ function LoginAdmin() {
         body: JSON.stringify({ groupname: nombreGrupo, username: username, idAplicacion: process.env.REACT_APP_API_USER_GROUP }),
       };
       fetch(
-        process.env.REACT_APP_API_CONEECTA + "/agregar-usuario-a-grupo",
+        process.env.REACT_APP_API_APP + "/anadir_a_grupo",
         requestOptions
       )
         .then((response) => {
@@ -62,11 +60,7 @@ function LoginAdmin() {
     <div>
       Loading...
       {session ? (
-        nombreGrupo === "administrador" ? (
-          <Navigate to="/" />
-        ) : (
-          <Navigate to="/login-empresa" />
-        )
+          <Navigate to="/inicio-admin" />
       ) : (
         <></>
       )}

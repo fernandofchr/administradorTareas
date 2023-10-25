@@ -16,13 +16,15 @@ export declare type UsuariosCreateFormInputValues = {
     nombre?: string;
     apellidoM?: string;
     apellidoP?: string;
-    role?: string;
+    correo?: string;
+    rol?: string;
 };
 export declare type UsuariosCreateFormValidationValues = {
     nombre?: ValidationFunction<string>;
     apellidoM?: ValidationFunction<string>;
     apellidoP?: ValidationFunction<string>;
-    role?: ValidationFunction<string>;
+    correo?: ValidationFunction<string>;
+    rol?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UsuariosCreateFormOverridesProps = {
@@ -30,7 +32,8 @@ export declare type UsuariosCreateFormOverridesProps = {
     nombre?: PrimitiveOverrideProps<TextFieldProps>;
     apellidoM?: PrimitiveOverrideProps<TextFieldProps>;
     apellidoP?: PrimitiveOverrideProps<TextFieldProps>;
-    role?: PrimitiveOverrideProps<TextFieldProps>;
+    correo?: PrimitiveOverrideProps<TextFieldProps>;
+    rol?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UsuariosCreateFormProps = React.PropsWithChildren<{
     overrides?: UsuariosCreateFormOverridesProps | undefined | null;

@@ -6,6 +6,9 @@ import App from './App';
 import LoginAdmin from './components/login/LoginAdmin';
 import LoginSupervisor from './components/login/LoginSupervisor';
 import LoginUsuario from './components/login/LoginAdmin';
+import VIstaPrincipalAdmin from './components/vistaPrincipal/VIstaPrincipalAdmin';
+import VistaPrincipalLider from './components/vistaPrincipal/VistaPrincipalLider';
+import VistaPrincipalUsuario from './components/vistaPrincipal/VistaPrincipalUsuario';
 
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
@@ -19,6 +22,9 @@ function Application() {
       <Route path="/admin-login" element={<LoginAdmin />} />
       <Route path="/supervisor-login" element={<LoginSupervisor />} />
       <Route path="/usuario-login" element={<LoginUsuario />} />
+      <Route path="/inicio-admin" element={<VIstaPrincipalAdmin />} />
+      <Route path="/inicio-supervisor" element={<VistaPrincipalLider />} />
+      <Route path="/inicio-usuario" element={<VistaPrincipalUsuario />} />
     </Routes>
 
     

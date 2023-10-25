@@ -38,6 +38,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "usuariosID": {
+                    "name": "usuariosID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -68,6 +75,15 @@ export const schema = {
                         "name": "byTareaPrincipal",
                         "fields": [
                             "tareaprincipalID"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byUsuarios",
+                        "fields": [
+                            "usuariosID"
                         ]
                     }
                 },
@@ -233,12 +249,35 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "role": {
-                    "name": "role",
+                "correo": {
+                    "name": "correo",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "rol": {
+                    "name": "rol",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "TareaSecundarias": {
+                    "name": "TareaSecundarias",
+                    "isArray": true,
+                    "type": {
+                        "model": "TareaSecundaria"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "usuariosID"
+                        ]
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -298,5 +337,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "2a7063014eebf6123eaeed606fbf6c30"
+    "version": "aa438106986ce53b20aed7391e5b79ca"
 };

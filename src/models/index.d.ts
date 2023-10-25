@@ -16,6 +16,7 @@ type EagerTareaSecundaria = {
   readonly estatus?: string | null;
   readonly untitledfield?: string | null;
   readonly tareaprincipalID: string;
+  readonly usuariosID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -30,6 +31,7 @@ type LazyTareaSecundaria = {
   readonly estatus?: string | null;
   readonly untitledfield?: string | null;
   readonly tareaprincipalID: string;
+  readonly usuariosID: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -83,7 +85,9 @@ type EagerUsuarios = {
   readonly nombre?: string | null;
   readonly apellidoM?: string | null;
   readonly apellidoP?: string | null;
-  readonly role?: string | null;
+  readonly correo?: string | null;
+  readonly rol?: string | null;
+  readonly TareaSecundarias?: (TareaSecundaria | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -97,7 +101,9 @@ type LazyUsuarios = {
   readonly nombre?: string | null;
   readonly apellidoM?: string | null;
   readonly apellidoP?: string | null;
-  readonly role?: string | null;
+  readonly correo?: string | null;
+  readonly rol?: string | null;
+  readonly TareaSecundarias: AsyncCollection<TareaSecundaria>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
