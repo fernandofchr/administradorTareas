@@ -4,7 +4,11 @@ import { Auth, DataStore } from 'aws-amplify';
 import { NombreGrupo } from '../NombreGrupo';
 import { useNavigate } from 'react-router-dom';
 import { Usuarios } from '../../models';
-import { Button } from '@aws-amplify/ui-react';
+
+import Footer from '../AppBar';
+import Grafico from '../Grafico';
+import CrearTareaPrincipal from '../tareasPrincipales.js/CrearTareaPrincipal';
+import TareasPrincipales from '../tareasPrincipales.js/TareasPrincipales';
 
 export default function VIstaPrincipalAdmin() {
   const [nombreGrupo, setNombreGrupo] = useState('');
@@ -14,15 +18,6 @@ export default function VIstaPrincipalAdmin() {
   const [registroCompleto, setregistroCompleto] = useState(false);
   const navigate = useNavigate();
 
-
-  const handleSignOut = async () => { // Agrega la palabra clave async aquí
-    try {
-      await Auth.signOut();
-      navigate('/');
-    } catch (error) {
-      console.log('error signing out: ', error);
-    }
-  }
   
   useLayoutEffect(() => {
     async function getData() {
@@ -53,16 +48,25 @@ export default function VIstaPrincipalAdmin() {
     getData();
   }, []);
 
+   
+   
+
   return (
     <>
     {session? (
       <>
-        <div>VIsta Principal del admin</div>
-        <Button onClick={handleSignOut}>
-          Salir Sesión
-        </Button>
+      <Footer userGroups={"administrador"}/>
+      <div className='container pt-3 pb-4 min-vh-100'>
+        <div className='d-flex flex-column' style={{ marginBottom: '1rem' }}>
+          <div className="pb-4">
+            < div className='d-flex justify-content-center'>
+              {/* <Graficos/>               */}
+              abran graficos
+            </div>
+          </div>
+        </div>
+      </div>
       </>
-      
     ):(
       <div>Hola</div>
     )}

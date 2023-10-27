@@ -5,8 +5,9 @@ import { NombreGrupo } from '../NombreGrupo';
 import { useNavigate } from 'react-router-dom';
 import { Usuarios } from '../../models';
 import { Button } from '@aws-amplify/ui-react';
+import Footer from '../AppBar';
 
-export default function VIstaPrincipalAdmin() {
+export default function VistaPrincipalLider() {
   const [nombreGrupo, setNombreGrupo] = useState('');
   const [session, setSession] = useState(true);
   const [loadingData, setLoadingData] = useState(true);
@@ -19,6 +20,9 @@ export default function VIstaPrincipalAdmin() {
     try {
       await Auth.signOut();
       navigate('/');
+      await DataStore.clear();
+              localStorage.clear();
+              sessionStorage.clear();
     } catch (error) {
       console.log('error signing out: ', error);
     }
@@ -58,12 +62,20 @@ export default function VIstaPrincipalAdmin() {
     <>
     {session? (
       <>
-        <div>VIsta Principal del supervisor</div>
-        <Button onClick={handleSignOut}>
-          Salir Sesión
-        </Button>
+      <Footer userGroups={"supervisor"}/>
+      <div className='container pt-3 pb-4 min-vh-100'>
+        <div className='d-flex flex-column' style={{ marginBottom: '1rem' }}>
+          <div className="pb-4">
+            < div className='d-flex justify-content-center'>
+        
+            <p>VIsta Principal del supervisor</p>
+              {/* <Grafico/> */}
+              
+            </div>
+          </div>
+        </div>
+      </div>
       </>
-      
     ):(
       <div>Hola</div>
     )}

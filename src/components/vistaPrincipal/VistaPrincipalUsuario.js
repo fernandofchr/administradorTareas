@@ -4,6 +4,7 @@ import { Auth, DataStore } from 'aws-amplify';
 import { NombreGrupo } from '../NombreGrupo';
 import { useNavigate } from 'react-router-dom';
 import { Usuarios } from '../../models';
+import Footer from '../AppBar';
 import { Button } from '@aws-amplify/ui-react';
 
 export default function VIstaPrincipalAdmin() {
@@ -19,6 +20,9 @@ export default function VIstaPrincipalAdmin() {
     try {
       await Auth.signOut();
       navigate('/');
+      await DataStore.clear();
+              localStorage.clear();
+              sessionStorage.clear();
     } catch (error) {
       console.log('error signing out: ', error);
     }
@@ -58,6 +62,7 @@ export default function VIstaPrincipalAdmin() {
     <>
     {session? (
       <>
+      <Footer userGroups={"usuario"}/>
         <div>VIsta Principal del Usuario</div>
         <Button onClick={handleSignOut}>
           Salir Sesión
