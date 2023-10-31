@@ -15,6 +15,7 @@ import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
 import CrearTareaPrincipal from './components/tareasPrincipales.js/CrearTareaPrincipal';
 import TareasPrincipales from './components/tareasPrincipales.js/TareasPrincipales';
+import TablaUsuarios from './components/tablaUsuarios/TablaUsuarios';
 Amplify.configure(awsExports);
 
 function Application() {
@@ -30,6 +31,7 @@ function Application() {
       <Route path="/inicio-usuario" element={<VistaPrincipalUsuario />} />
       <Route path="/tareas-principales" element={<TareasPrincipales />} />
       <Route path="/crear-tarea" element={<CrearTareaPrincipal />} />
+      <Route path='/admin-tabla-usuarios' element={<TablaUsuarios/>}/>
     </Routes>
 
     
