@@ -14,6 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
 import CrearTareaPrincipal from './components/tareasPrincipales.js/CrearTareaPrincipal';
+import CrearTareaSecundaria from './components/tareasSecundarias/CrearTareaSecundaria';
 import TareasPrincipales from './components/tareasPrincipales.js/TareasPrincipales';
 Amplify.configure(awsExports);
 
@@ -30,6 +31,7 @@ function Application() {
       <Route path="/inicio-usuario" element={<VistaPrincipalUsuario />} />
       <Route path="/tareas-principales" element={<TareasPrincipales />} />
       <Route path="/crear-tarea" element={<CrearTareaPrincipal />} />
+      <Route path="/crear-tarea-secundaria" element={<CrearTareaSecundaria />} />
     </Routes>
 
     

@@ -1,10 +1,11 @@
 type TareaSecundaria @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
-  descripcion: String
   estatus: String
-  untitledfield: String
+  descripcion: String
   tareaprincipalID: ID! @index(name: "byTareaPrincipal")
   usuariosID: ID! @index(name: "byUsuarios")
+  fechaVencimiento: AWSDate
+  comentarios: String
 }
 
 type TareaPrincipal @model @auth(rules: [{allow: public}, {allow: owner}]) {
@@ -13,6 +14,7 @@ type TareaPrincipal @model @auth(rules: [{allow: public}, {allow: owner}]) {
   descripcion: String
   fechaVencimiento: AWSDate
   TareaSecundarias: [TareaSecundaria] @hasMany(indexName: "byTareaPrincipal", fields: ["id"])
+  responsable: Usuarios @hasOne
 }
 
 type Usuarios @model @auth(rules: [{allow: public}, {allow: owner}]) {
@@ -23,5 +25,6 @@ type Usuarios @model @auth(rules: [{allow: public}, {allow: owner}]) {
   correo: String
   rol: String
   TareaSecundarias: [TareaSecundaria] @hasMany(indexName: "byUsuarios", fields: ["id"])
+  TareaPrincipal: TareaPrincipal @belongsTo
 }
  

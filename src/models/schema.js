@@ -10,13 +10,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "descripcion": {
-                    "name": "descripcion",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "estatus": {
                     "name": "estatus",
                     "isArray": false,
@@ -24,8 +17,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "untitledfield": {
-                    "name": "untitledfield",
+                "descripcion": {
+                    "name": "descripcion",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -43,6 +36,20 @@ export const schema = {
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "fechaVencimiento": {
+                    "name": "fechaVencimiento",
+                    "isArray": false,
+                    "type": "AWSDate",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "comentarios": {
+                    "name": "comentarios",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "createdAt": {
@@ -164,6 +171,24 @@ export const schema = {
                         ]
                     }
                 },
+                "responsable": {
+                    "name": "responsable",
+                    "isArray": false,
+                    "type": {
+                        "model": "Usuarios"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_ONE",
+                        "associatedWith": [
+                            "id"
+                        ],
+                        "targetNames": [
+                            "tareaPrincipalResponsableId"
+                        ]
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -179,6 +204,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
+                },
+                "tareaPrincipalResponsableId": {
+                    "name": "tareaPrincipalResponsableId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -279,6 +311,21 @@ export const schema = {
                         ]
                     }
                 },
+                "TareaPrincipal": {
+                    "name": "TareaPrincipal",
+                    "isArray": false,
+                    "type": {
+                        "model": "TareaPrincipal"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetNames": [
+                            "usuariosTareaPrincipalId"
+                        ]
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -294,6 +341,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
+                },
+                "usuariosTareaPrincipalId": {
+                    "name": "usuariosTareaPrincipalId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -337,5 +391,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "aa438106986ce53b20aed7391e5b79ca"
+    "version": "a0bffd1eb5a75f16684afb4c9d0804e6"
 };

@@ -1,6 +1,6 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
-import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
+import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@aws-amplify/datastore";
 
 
 
@@ -12,11 +12,12 @@ type EagerTareaSecundaria = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly descripcion?: string | null;
   readonly estatus?: string | null;
-  readonly untitledfield?: string | null;
+  readonly descripcion?: string | null;
   readonly tareaprincipalID: string;
   readonly usuariosID: string;
+  readonly fechaVencimiento?: string | null;
+  readonly comentarios?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -27,11 +28,12 @@ type LazyTareaSecundaria = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly descripcion?: string | null;
   readonly estatus?: string | null;
-  readonly untitledfield?: string | null;
+  readonly descripcion?: string | null;
   readonly tareaprincipalID: string;
   readonly usuariosID: string;
+  readonly fechaVencimiento?: string | null;
+  readonly comentarios?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -52,8 +54,10 @@ type EagerTareaPrincipal = {
   readonly descripcion?: string | null;
   readonly fechaVencimiento?: string | null;
   readonly TareaSecundarias?: (TareaSecundaria | null)[] | null;
+  readonly responsable?: Usuarios | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+  readonly tareaPrincipalResponsableId?: string | null;
 }
 
 type LazyTareaPrincipal = {
@@ -66,8 +70,10 @@ type LazyTareaPrincipal = {
   readonly descripcion?: string | null;
   readonly fechaVencimiento?: string | null;
   readonly TareaSecundarias: AsyncCollection<TareaSecundaria>;
+  readonly responsable: AsyncItem<Usuarios | undefined>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+  readonly tareaPrincipalResponsableId?: string | null;
 }
 
 export declare type TareaPrincipal = LazyLoading extends LazyLoadingDisabled ? EagerTareaPrincipal : LazyTareaPrincipal
@@ -88,8 +94,10 @@ type EagerUsuarios = {
   readonly correo?: string | null;
   readonly rol?: string | null;
   readonly TareaSecundarias?: (TareaSecundaria | null)[] | null;
+  readonly TareaPrincipal?: TareaPrincipal | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+  readonly usuariosTareaPrincipalId?: string | null;
 }
 
 type LazyUsuarios = {
@@ -104,8 +112,10 @@ type LazyUsuarios = {
   readonly correo?: string | null;
   readonly rol?: string | null;
   readonly TareaSecundarias: AsyncCollection<TareaSecundaria>;
+  readonly TareaPrincipal: AsyncItem<TareaPrincipal | undefined>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
+  readonly usuariosTareaPrincipalId?: string | null;
 }
 
 export declare type Usuarios = LazyLoading extends LazyLoadingDisabled ? EagerUsuarios : LazyUsuarios
