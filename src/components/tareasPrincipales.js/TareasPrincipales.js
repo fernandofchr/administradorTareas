@@ -1,7 +1,7 @@
 import React from 'react'
 import CrearTareaPrincipal from '../tareasPrincipales.js/CrearTareaPrincipal'
 import Footer from '../AppBar'
-import CrearTareaPrincipal from './CrearTareaPrincipal'
+
 import TareasTable from './TareasTable'
 import { Typography, Button } from '@mui/material'
 import ActualizarTareaPrincipalButton  from "./Botones/ActualizarTareaPrincipalButton.jsx"
