@@ -1,4 +1,5 @@
 import React from 'react'
+import CrearTareaPrincipal from '../tareasPrincipales.js/CrearTareaPrincipal'
 import Footer from '../AppBar'
 import CrearTareaPrincipal from './CrearTareaPrincipal'
 import TareasTable from './TareasTable'
@@ -15,9 +16,9 @@ const navigate = useNavigate();
     navigate('/crear-tarea'); // Reemplaza '/ruta-de-destino' con la ruta a la que deseas navegar.
   };
     return (
-          <>
+        <>
           <Footer userGroups={"administrador"}/>
-          <div className='container pt-3 pb-4 min-vh-100'>
+          <div className='container pt-3 pb-4'>
             <div className='d-flex flex-column' style={{ marginBottom: '1rem' }}>
               <div className="pb-4">
               <Typography variant="h3" component="h2" className='d-flex justify-content-center'>

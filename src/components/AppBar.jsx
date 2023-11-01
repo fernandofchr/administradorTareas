@@ -45,7 +45,7 @@
                   <Button onClick={() => handleButtonClick('/admin')} variant="contained" color="secondary" sx={{ margin: '4px' }}>
                     Tareas Secundarias 
                   </Button>
-                  <Button onClick={() => handleButtonClick('/admin')} variant="contained" color="secondary" sx={{ margin: '4px' }}>
+                  <Button onClick={() => handleButtonClick('/admin-tabla-usuarios')} variant="contained" color="secondary" sx={{ margin: '4px' }}>
                     Usuarios 
                   </Button>
                 </Box></>
