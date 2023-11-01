@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
-import { nuevaTarea } from './CrudMainTask'; // Asegúrate de importar correctamente tu función
-import { TextField, TextareaAutosize, Button, Grid, Box } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { nuevaTarea, nuevaTareaSecundaria } from '../tareasPrincipales.js/CrudMainTask'; // Asegúrate de importar tus funciones correctamente
+import { Typography,TextField,Button,Grid,Select, MenuItem } from '@mui/material';
+import { Usuarios } from '../../models';
+import Swal from 'sweetalert2';
 import Footer from '../AppBar';
+import { useNavigate } from 'react-router-dom';
+import { TareaPrincipal } from '../../models';
+import { DataStore } from 'aws-amplify';
 
 const CrearTareaPrincipal = () => {
   const [usuarios, setUsuarios] = useState([])
@@ -80,64 +85,74 @@ const CrearTareaPrincipal = () => {
     }
   };
 
-    return (
-        <>
-        
-          <>
-          <Footer userGroups={"administrador"}/>
-          <div className='container pt-3 pb-4 min-vh-100'>
-            <div className='d-flex flex-column' style={{ marginBottom: '1rem' }}>
-              <div className="pb-4">
-                < div className='d-flex justify-content-center'>
-        
-                <div>
-      <h2>Crear Nueva Tarea Principal</h2>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
+  return (
+    <>
+    <Footer userGroups={"administrador"} />
+      <div className="d-flex justify-content-center">
+        <div>
+          <Typography variant="h4" component="h2">
+            Creador de Tareas
+          </Typography>
+          <div>
+            <Typography variant="h6">Tarea Principal</Typography>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
             <TextField
+              fullWidth
               label="Título"
               name="titulo"
-              value={tarea.titulo}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextareaAutosize
+              value={tareaPrincipal.titulo}
+              onChange={handleChangeTareaPrincipal}
+            /></Grid>
+            <Grid item xs={12}>
+            <TextField
+              fullWidth
               minRows={3}
               placeholder="Descripción"
               name="descripcion"
-              value={tarea.descripcion}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12}>
+              value={tareaPrincipal.descripcion}
+              onChange={handleChangeTareaPrincipal}
+            /></Grid>
+            <Grid item xs={12}>
             <TextField
+              fullWidth
               label="Fecha de Vencimiento"
               type="date"
               name="fechaVencimiento"
-              value={tarea.fechaVencimiento}
-              onChange={handleChange}
+              value={tareaPrincipal.fechaVencimiento}
+              onChange={handleChangeTareaPrincipal}
             />
-          </Grid>
-        </Grid>
-        <Box mt={2}>
-          <Button type="submit" variant="contained" color="primary">
-            Crear Tarea Principal
-          </Button>
-        </Box>
-      </form>
-    </div>
-                  
-                  
-                </div>
-              </div>
-            </div>
+            </Grid>
+            <Grid item xs={12}>
+            <Select
+              fullWidth
+              label="Responsable"
+              name="tareaPrincipalResponsableId"
+              value={tareaPrincipal.tareaPrincipalResponsableId}
+              onChange={handleChangeTareaPrincipal}>
+                  {usuarios.map((user) => (
+                    <MenuItem key={user.id} value={user.id}>
+                      {user.nombre} {user.apellidoP} {user.id}
+                    </MenuItem>
+                  ))}
+                </Select>
+            </Grid>
+            <Grid item xs={12}>
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={handleCrearTareaPrincipal}
+            >
+              Crear Tarea Principal
+            </Button>
+            </Grid>
+            </Grid>
           </div>
-          </>
-
-        </>
-      )
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default CrearTareaPrincipal;
